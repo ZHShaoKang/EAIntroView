@@ -186,7 +186,7 @@
 
 - (void)skipIntroduction {
 	self.skipped = YES;
-    [self hideWithFadeOutDuration:0.3];
+    [self hideWithFadeOutDuration:.75f];
 }
 
 - (void)notifyDelegateWithPreviousPage:(NSUInteger)previousPageIndex andCurrentPage:(NSUInteger)currentPageIndex {
@@ -1116,6 +1116,7 @@ CGFloat easeOutValue(CGFloat value) {
 
     [UIView animateWithDuration:duration animations:^{
         self.alpha = 0.f;
+        self.transform = CGAffineTransformMakeScale(1.5, 1.2);
     } completion:^(BOOL finished){
 		[self finishIntroductionAndRemoveSelf];
 	}];
@@ -1148,7 +1149,7 @@ CGFloat easeOutValue(CGFloat value) {
         return;
     }
     if (self.currentPageIndex + 1 >= [self.pages count]) {
-        [self hideWithFadeOutDuration:0.3];
+        [self hideWithFadeOutDuration:.75f];
     } else {
         // Just scroll to the new page.
         // After scrolling ends, we call -checkIndexForScrollView:, which itself sets the new currentPageIndex.
